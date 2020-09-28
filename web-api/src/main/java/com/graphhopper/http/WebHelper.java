@@ -17,9 +17,9 @@
  */
 package com.graphhopper.http;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+// import com.fasterxml.jackson.databind.node.ArrayNode;
+// import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+// import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.graphhopper.GHResponse;
 import com.graphhopper.ResponsePath;
 import com.graphhopper.util.Helper;
@@ -150,47 +150,46 @@ public class WebHelper {
      */
     public static final List<String> COPYRIGHTS = Arrays.asList("GraphHopper", "OpenStreetMap contributors");
 
-    public static ObjectNode jsonResponsePutInfo(ObjectNode json, float took) {
-        final ObjectNode info = json.putObject("info");
-        info.putPOJO("copyrights", COPYRIGHTS);
-        info.put("took", Math.round(took));
-        return json;
-    }
+    // public static ObjectNode jsonResponsePutInfo(ObjectNode json, float took) {
+    //     final ObjectNode info = json.putObject("info");
+    //     info.putPOJO("copyrights", COPYRIGHTS);
+    //     info.put("took", Math.round(took));
+    //     return json;
+    // }
 
-    public static ObjectNode jsonObject(GHResponse ghRsp, boolean enableInstructions, boolean calcPoints, boolean enableElevation, boolean pointsEncoded, float took) {
-        ObjectNode json = JsonNodeFactory.instance.objectNode();
-        json.putPOJO("hints", ghRsp.getHints().toMap());
-        jsonResponsePutInfo(json, took);
-        ArrayNode jsonPathList = json.putArray("paths");
-        for (ResponsePath p : ghRsp.getAll()) {
-            ObjectNode jsonPath = jsonPathList.addObject();
-            jsonPath.put("distance", Helper.round(p.getDistance(), 3));
-            jsonPath.put("weight", Helper.round6(p.getRouteWeight()));
-            jsonPath.put("time", p.getTime());
-            jsonPath.put("transfers", p.getNumChanges());
-            if (!p.getDescription().isEmpty()) {
-                jsonPath.putPOJO("description", p.getDescription());
-            }
-            if (calcPoints) {
-                jsonPath.put("points_encoded", pointsEncoded);
-                if (p.getPoints().getSize() >= 2) {
-                    jsonPath.putPOJO("bbox", p.calcBBox2D());
-                }
-                jsonPath.putPOJO("points", pointsEncoded ? encodePolyline(p.getPoints(), enableElevation) : p.getPoints().toLineString(enableElevation));
-                if (enableInstructions) {
-                    jsonPath.putPOJO("instructions", p.getInstructions());
-                }
-                jsonPath.putPOJO("legs", p.getLegs());
-                jsonPath.putPOJO("details", p.getPathDetails());
-                jsonPath.put("ascend", p.getAscend());
-                jsonPath.put("descend", p.getDescend());
-            }
-            jsonPath.putPOJO("snapped_waypoints", pointsEncoded ? encodePolyline(p.getWaypoints(), enableElevation) : p.getWaypoints().toLineString(enableElevation));
-            if (p.getFare() != null) {
-                jsonPath.put("fare", NumberFormat.getCurrencyInstance(Locale.ROOT).format(p.getFare()));
-            }
-        }
-        return json;
-    }
-
+    // public static ObjectNode jsonObject(GHResponse ghRsp, boolean enableInstructions, boolean calcPoints, boolean enableElevation, boolean pointsEncoded, float took) {
+    //     ObjectNode json = JsonNodeFactory.instance.objectNode();
+    //     json.putPOJO("hints", ghRsp.getHints().toMap());
+    //     jsonResponsePutInfo(json, took);
+    //     ArrayNode jsonPathList = json.putArray("paths");
+    //     for (ResponsePath p : ghRsp.getAll()) {
+    //         ObjectNode jsonPath = jsonPathList.addObject();
+    //         jsonPath.put("distance", Helper.round(p.getDistance(), 3));
+    //         jsonPath.put("weight", Helper.round6(p.getRouteWeight()));
+    //         jsonPath.put("time", p.getTime());
+    //         jsonPath.put("transfers", p.getNumChanges());
+    //         if (!p.getDescription().isEmpty()) {
+    //             jsonPath.putPOJO("description", p.getDescription());
+    //         }
+    //         if (calcPoints) {
+    //             jsonPath.put("points_encoded", pointsEncoded);
+    //             if (p.getPoints().getSize() >= 2) {
+    //                 jsonPath.putPOJO("bbox", p.calcBBox2D());
+    //             }
+    //             jsonPath.putPOJO("points", pointsEncoded ? encodePolyline(p.getPoints(), enableElevation) : p.getPoints().toLineString(enableElevation));
+    //             if (enableInstructions) {
+    //                 jsonPath.putPOJO("instructions", p.getInstructions());
+    //             }
+    //             jsonPath.putPOJO("legs", p.getLegs());
+    //             jsonPath.putPOJO("details", p.getPathDetails());
+    //             jsonPath.put("ascend", p.getAscend());
+    //             jsonPath.put("descend", p.getDescend());
+    //         }
+    //         jsonPath.putPOJO("snapped_waypoints", pointsEncoded ? encodePolyline(p.getWaypoints(), enableElevation) : p.getWaypoints().toLineString(enableElevation));
+    //         if (p.getFare() != null) {
+    //             jsonPath.put("fare", NumberFormat.getCurrencyInstance(Locale.ROOT).format(p.getFare()));
+    //         }
+    //     }
+    //     return json;
+    // }
 }
