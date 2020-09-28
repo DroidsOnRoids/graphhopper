@@ -25,8 +25,8 @@ import com.graphhopper.ResponsePath;
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.PointList;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+// import java.io.UnsupportedEncodingException;
+// import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -43,13 +43,13 @@ import java.util.Locale;
  * @author Peter Karich
  */
 public class WebHelper {
-    public static String encodeURL(String str) {
-        try {
-            return URLEncoder.encode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    // public static String encodeURL(String str) {
+    //     try {
+    //         return URLEncoder.encode(str, "UTF-8");
+    //     } catch (UnsupportedEncodingException e) {
+    //         throw new RuntimeException(e);
+    //     }
+    // }
 
     public static PointList decodePolyline(String encoded, int initCap, boolean is3D) {
         PointList poly = new PointList(initCap, is3D);
