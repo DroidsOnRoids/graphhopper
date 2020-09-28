@@ -20,8 +20,8 @@ package com.graphhopper.util;
 import com.graphhopper.util.shapes.BBox;
 
 import java.io.*;
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
+// import java.lang.management.GarbageCollectorMXBean;
+// import java.lang.management.ManagementFactory;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.charset.Charset;
@@ -163,38 +163,43 @@ public class Helper {
     }
 
     public static long getTotalMB() {
-        return Runtime.getRuntime().totalMemory() / MB;
+        // return Runtime.getRuntime().totalMemory() / MB;
+        return 0;
     }
 
     public static long getUsedMB() {
-        return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / MB;
+        // return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / MB;
+        return 0;
     }
 
     public static String getMemInfo() {
-        return "totalMB:" + getTotalMB() + ", usedMB:" + getUsedMB();
+        // return "totalMB:" + getTotalMB() + ", usedMB:" + getUsedMB();
+        return "";
     }
 
     public static int getUsedMBAfterGC() {
-        long before = getTotalGcCount();
-        // trigger gc
-        System.gc();
-        while (getTotalGcCount() == before) {
-            // wait for the gc to have completed
-        }
-        long result = (ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed() +
-                ManagementFactory.getMemoryMXBean().getNonHeapMemoryUsage().getUsed()) / (1024 * 1024);
-        return (int) result;
+        // long before = getTotalGcCount();
+        // // trigger gc
+        // System.gc();
+        // while (getTotalGcCount() == before) {
+        //     // wait for the gc to have completed
+        // }
+        // long result = (ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed() +
+        //         ManagementFactory.getMemoryMXBean().getNonHeapMemoryUsage().getUsed()) / (1024 * 1024);
+        // return (int) result;
+        return 0;
     }
 
     private static long getTotalGcCount() {
-        long sum = 0;
-        for (GarbageCollectorMXBean b : ManagementFactory.getGarbageCollectorMXBeans()) {
-            long count = b.getCollectionCount();
-            if (count != -1) {
-                sum += count;
-            }
-        }
-        return sum;
+        // long sum = 0;
+        // for (GarbageCollectorMXBean b : ManagementFactory.getGarbageCollectorMXBeans()) {
+        //     long count = b.getCollectionCount();
+        //     if (count != -1) {
+        //         sum += count;
+        //     }
+        // }
+        // return sum;
+        return 0;
     }
 
     public static int getSizeOfObjectRef(int factor) {

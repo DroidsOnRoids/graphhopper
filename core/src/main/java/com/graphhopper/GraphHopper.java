@@ -601,19 +601,19 @@ public class GraphHopper implements GraphHopperAPI {
 
         DAType elevationDAType = DAType.fromString(ghConfig.getString("graph.elevation.dataaccess", "MMAP"));
         ElevationProvider elevationProvider = ElevationProvider.NOOP;
-        if (eleProviderStr.equalsIgnoreCase("srtm")) {
-            elevationProvider = new SRTMProvider(cacheDirStr);
-        } else if (eleProviderStr.equalsIgnoreCase("cgiar")) {
-            elevationProvider = new CGIARProvider(cacheDirStr);
-        } else if (eleProviderStr.equalsIgnoreCase("gmted")) {
-            elevationProvider = new GMTEDProvider(cacheDirStr);
-        } else if (eleProviderStr.equalsIgnoreCase("srtmgl1")) {
-            elevationProvider = new SRTMGL1Provider(cacheDirStr);
-        } else if (eleProviderStr.equalsIgnoreCase("multi")) {
-            elevationProvider = new MultiSourceElevationProvider(cacheDirStr);
-        } else if (eleProviderStr.equalsIgnoreCase("skadi")) {
-            elevationProvider = new SkadiProvider(cacheDirStr);
-        }
+        // if (eleProviderStr.equalsIgnoreCase("srtm")) {
+        //     elevationProvider = new SRTMProvider(cacheDirStr);
+        // } else if (eleProviderStr.equalsIgnoreCase("cgiar")) {
+        //     elevationProvider = new CGIARProvider(cacheDirStr);
+        // } else if (eleProviderStr.equalsIgnoreCase("gmted")) {
+        //     elevationProvider = new GMTEDProvider(cacheDirStr);
+        // } else if (eleProviderStr.equalsIgnoreCase("srtmgl1")) {
+        //     elevationProvider = new SRTMGL1Provider(cacheDirStr);
+        // } else if (eleProviderStr.equalsIgnoreCase("multi")) {
+        //     elevationProvider = new MultiSourceElevationProvider(cacheDirStr);
+        // } else if (eleProviderStr.equalsIgnoreCase("skadi")) {
+        //     elevationProvider = new SkadiProvider(cacheDirStr);
+        // }
 
         elevationProvider.setAutoRemoveTemporaryFiles(removeTempElevationFiles);
         elevationProvider.setInterpolate(interpolate);
