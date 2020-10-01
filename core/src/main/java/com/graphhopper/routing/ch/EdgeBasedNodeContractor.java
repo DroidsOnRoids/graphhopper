@@ -125,12 +125,12 @@ class EdgeBasedNodeContractor implements NodeContractor {
         float priority = params.edgeQuotientWeight * edgeQuotient +
                 params.originalEdgeQuotientWeight * origEdgeQuotient +
                 params.hierarchyDepthWeight * hierarchyDepth;
-        if (LOGGER.isTraceEnabled())
-            LOGGER.trace("node: {}, eq: {} / {} = {}, oeq: {} / {} = {}, depth: {} --> {}",
-                    node,
-                    numShortcuts, numPrevEdges, edgeQuotient,
-                    numOrigEdges, numPrevOrigEdges, origEdgeQuotient,
-                    hierarchyDepth, priority);
+        // if (LOGGER.isTraceEnabled())
+        //     LOGGER.trace("node: {}, eq: {} / {} = {}, oeq: {} / {} = {}, depth: {} --> {}",
+        //             node,
+        //             numShortcuts, numPrevEdges, edgeQuotient,
+        //             numOrigEdges, numPrevOrigEdges, origEdgeQuotient,
+        //             hierarchyDepth, priority);
         return priority;
     }
 
